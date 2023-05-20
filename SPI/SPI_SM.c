@@ -29,7 +29,10 @@
 /*****************************************************************************/
 
 /* Select which SPI to use */
-#define SPI_KIT SPI_ID_1
+#define SPI_ID SPI_ID_1
+
+/* Select peripheral CS */
+#define SPI_CS CS_LM70
 
 /* Select SPI frequency to use */
 #define SPI_FREQ 5000000
@@ -66,19 +69,19 @@ uint8_t rData[SPI_BUFFER_SIZE];
 /* One time call function, at the start */
 void SPI_Init(void)
 {
-	PLIB_SPI_Disable(SPI_KIT);
-	PLIB_SPI_BufferClear(SPI_KIT);
-	PLIB_SPI_StopInIdleDisable(SPI_KIT);
-	PLIB_SPI_PinEnable(SPI_KIT, SPI_PIN_DATA_OUT);
-	PLIB_SPI_CommunicationWidthSelect(SPI_KIT, SPI_COMMUNICATION_WIDTH_8BITS);
-	PLIB_SPI_BaudRateSet(SPI_KIT, SYS_CLK_PeripheralFrequencyGet(CLK_BUS_PERIPHERAL_1), SPI_FREQ);
-	PLIB_SPI_InputSamplePhaseSelect(SPI_KIT, SPI_INPUT_SAMPLING_PHASE_IN_MIDDLE );
-	PLIB_SPI_ClockPolaritySelect(SPI_KIT, SPI_CLOCK_POLARITY_IDLE_LOW);
-	PLIB_SPI_OutputDataPhaseSelect(SPI_KIT, SPI_OUTPUT_DATA_PHASE_ON_IDLE_TO_ACTIVE_CLOCK);
-	PLIB_SPI_MasterEnable(SPI_KIT);
-	PLIB_SPI_FramedCommunicationDisable(SPI_KIT);
-	PLIB_SPI_FIFOEnable(SPI_KIT);
-	PLIB_SPI_Enable(SPI_KIT);
+	PLIB_SPI_Disable(SPI_ID);
+	PLIB_SPI_BufferClear(SPI_ID);
+	PLIB_SPI_StopInIdleDisable(SPI_ID);
+	PLIB_SPI_PinEnable(SPI_ID, SPI_PIN_DATA_OUT);
+	PLIB_SPI_CommunicationWidthSelect(SPI_ID, SPI_COMMUNICATION_WIDTH_8BITS);
+	PLIB_SPI_BaudRateSet(SPI_ID, SYS_CLK_PeripheralFrequencyGet(CLK_BUS_PERIPHERAL_1), SPI_FREQ);
+	PLIB_SPI_InputSamplePhaseSelect(SPI_ID, SPI_INPUT_SAMPLING_PHASE_IN_MIDDLE );
+	PLIB_SPI_ClockPolaritySelect(SPI_ID, SPI_CLOCK_POLARITY_IDLE_LOW);
+	PLIB_SPI_OutputDataPhaseSelect(SPI_ID, SPI_OUTPUT_DATA_PHASE_ON_IDLE_TO_ACTIVE_CLOCK);
+	PLIB_SPI_MasterEnable(SPI_ID);
+	PLIB_SPI_FramedCommunicationDisable(SPI_ID);
+	PLIB_SPI_FIFOEnable(SPI_ID);
+	PLIB_SPI_Enable(SPI_ID);
 
 	/* Configuration control */
 	//ConfigReg = SPI1CON;
@@ -110,9 +113,9 @@ void SPI_DoTasks(void)
 			
 		case SPI_STATE_BUSY_READ :
             
-            spiBusy = PLIB_SPI_IsBusy(SPI_KIT);
+            spiBusy = PLIB_SPI_IsBusy(SPI_ID);
             
-            if(!PLIB_SPI_ReceiverFIFOIsEmpty(SPI_KIT))
+            if(!PLIB_SPI_ReceiverFIFOIsEmpty(SPI_ID))
             {
                 if(iData < nData)
                 {
@@ -126,20 +129,20 @@ void SPI_DoTasks(void)
             }
             else if(!spiBusy)
             {
-                PLIB_SPI_BufferWrite(SPI_KIT, DUMMY_BYTE);
+                PLIB_SPI_BufferWrite(SPI_ID, DUMMY_BYTE);
             }            
             
 			break;
 			
 		case SPI_STATE_BUSY_WRITE :
             
-            spiBusy = PLIB_SPI_IsBusy(SPI_KIT);
+            spiBusy = PLIB_SPI_IsBusy(SPI_ID);
             
             if(!spiBusy)
             {
                 if(iData < nData)
                 {
-                    PLIB_SPI_BufferWrite(SPI_KIT, *(wData + iData));
+                    PLIB_SPI_BufferWrite(SPI_ID, *(wData + iData));
                     iData++;
                 }
                 else
@@ -164,9 +167,14 @@ void SPI_DoTasks(void)
 //les données reçues ne seront pas traitées
 void SPI_StartWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 {
-    nData       = nBytes;
-    wData       = pBytesToWrite;
-    spiState    = SPI_STATE_BUSY_WRITE;
+	uint8_t iData = 0;
+	
+	SPI_CS = 0;
+	
+	for( iData = 0 ; iData < nBytes ; iData++ )
+        PLIB_SPI_BufferWrite(SPI_ID_1, *(pBytesToWrite + iData));	
+	
+    spiState = SPI_STATE_BUSY_WRITE;
 }
 
 /*****************************************************************************/
