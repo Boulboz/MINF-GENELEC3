@@ -20,8 +20,6 @@
 #include "peripheral\i2c\plib_i2c.h"
 #include "peripheral\osc\plib_osc.h"
 
-
-
 // KIT 32MX795F512L Constants
 #define KIT_I2C_BUS I2C_ID_2
 #define I2C_CLOCK_FAST 400000

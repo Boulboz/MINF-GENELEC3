@@ -1,5 +1,5 @@
-build/default/production/_ext/1386496605/Mc32SpiUtil.o: \
- ../../../SPI/Mc32SpiUtil.c ../src/app.h \
+build/default/production/_ext/1386486059/Mc32_I2cUtilCCS.o: \
+ ../../../I2C/Mc32_I2cUtilCCS.c ../src/app.h \
  ../src/system_config/default/system_config.h \
  ../../../../../../bsp/pic32mx_skes/bsp.h \
  ../../../../../../framework/peripheral/ports/plib_ports.h \
@@ -138,51 +138,56 @@ build/default/production/_ext/1386496605/Mc32SpiUtil.o: \
  ../../../../../../framework/system/int/sys_int_mapping.h \
  ../../../../../../framework/system/ports/sys_ports.h \
  ../../../../../../framework/system/ports/sys_ports_definitions.h \
- ../../../SPI/Mc32SpiUtil.h \
- ../../../../../../framework/peripheral\SPI\plib_spi.h \
- ../../../../../../framework/peripheral/spi/processor/spi_processor.h \
- ../../../../../../framework/peripheral/spi/processor/spi_p32xxxx.h \
- ../../../../../../framework/peripheral/spi/processor/spi_p32mx795f512l.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_EnableControl_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_registers.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_StopInIdle_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiverOverflow_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitBufferFullStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitBufferEmptyStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiveBufferStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_PinControl_PIC32_1.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_CommunicationWidth_PIC32.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioCommunicationWidth_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_InputSamplePhase_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_OutputDataPhase_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ClockPolarity_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_MasterControl_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_BaudRate_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_BusStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ReadDataSignStatus_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_SlaveSelectControl_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitUnderRunStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOControl_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOCount_PIC32.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiveFIFOStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOShiftRegisterEmptyStatus_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOInterruptMode_PIC32.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FramedCommunication_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseDirection_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulsePolarity_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseEdge_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseWidth_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseCounter_PIC32.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameErrorStatus_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_BaudRateClock_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_ErrorInterruptControl_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioErrorControl_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioProtocolControl_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioTransmitMode_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioProtocolMode_Unsupported.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer32bit_Default.h \
- ../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer16bit_Default.h
+ ../../../I2C/Mc32_I2cUtilCCS.h \
+ ../../../../../../framework/peripheral\i2c\plib_i2c.h \
+ ../../../../../../framework/peripheral/i2c/plib_i2c_helper_macros.h \
+ ../../../../../../framework/peripheral/i2c/processor/i2c_processor.h \
+ ../../../../../../framework/peripheral/i2c/processor/i2c_p32xxxx.h \
+ ../../../../../../framework/peripheral/i2c/processor/i2c_p32mx795f512l.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ClockStretching_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_Registers.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_GeneralCall_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SMBus_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_HighFrequency_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReservedAddressProtect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StopInIdle_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_IPMI_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ModuleEnable_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StartDetect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StopDetect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ArbitrationLoss_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_BusIdle_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_BaudRate_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddress7Bit_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddress10Bit_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddressDetect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_GeneralCallAddressDetect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveMask_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveReadRequest_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveDataDetect_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveClockHold_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStart_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStartRepeat_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterReceiverClock1Byte_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStop_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterBusy_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteSend_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteComplete_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteAcknowledge_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterOverflow_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteAvailable_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteGet_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteAcknowledge_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceiverOverflow_Default.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveInterruptOnStop_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveInterruptOnStart_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveBufferOverwrite_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_DataLineHoldTime_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveBusCollisionDetect_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddressHoldEnable_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveDataHoldEnable_Unsupported.h \
+ ../../../../../../framework/peripheral/i2c/processor/../templates/i2c_AcksequenceIsInProgress_Unsupported.h \
+ ../../../../../../framework/peripheral\osc\plib_osc.h
 
 ../src/app.h:
 
@@ -462,92 +467,102 @@ build/default/production/_ext/1386496605/Mc32SpiUtil.o: \
 
 ../../../../../../framework/system/ports/sys_ports_definitions.h:
 
-../../../SPI/Mc32SpiUtil.h:
+../../../I2C/Mc32_I2cUtilCCS.h:
 
-../../../../../../framework/peripheral\SPI\plib_spi.h:
+../../../../../../framework/peripheral\i2c\plib_i2c.h:
 
-../../../../../../framework/peripheral/spi/processor/spi_processor.h:
+../../../../../../framework/peripheral/i2c/plib_i2c_helper_macros.h:
 
-../../../../../../framework/peripheral/spi/processor/spi_p32xxxx.h:
+../../../../../../framework/peripheral/i2c/processor/i2c_processor.h:
 
-../../../../../../framework/peripheral/spi/processor/spi_p32mx795f512l.h:
+../../../../../../framework/peripheral/i2c/processor/i2c_p32xxxx.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_EnableControl_Default.h:
+../../../../../../framework/peripheral/i2c/processor/i2c_p32mx795f512l.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_registers.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ClockStretching_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_StopInIdle_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_Registers.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiverOverflow_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_GeneralCall_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitBufferFullStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SMBus_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitBufferEmptyStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_HighFrequency_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiveBufferStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReservedAddressProtect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_PinControl_PIC32_1.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StopInIdle_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_CommunicationWidth_PIC32.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_IPMI_Unsupported.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioCommunicationWidth_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ModuleEnable_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_InputSamplePhase_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StartDetect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_OutputDataPhase_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_StopDetect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ClockPolarity_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ArbitrationLoss_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_MasterControl_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_BusIdle_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_BaudRate_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_BaudRate_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_BusStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddress7Bit_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ReadDataSignStatus_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddress10Bit_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_SlaveSelectControl_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddressDetect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_TransmitUnderRunStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_GeneralCallAddressDetect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOControl_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveMask_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOCount_PIC32.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveReadRequest_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ReceiveFIFOStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveDataDetect_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOShiftRegisterEmptyStatus_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveClockHold_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FIFOInterruptMode_PIC32.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStart_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FramedCommunication_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStartRepeat_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseDirection_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterReceiverClock1Byte_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulsePolarity_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_MasterStop_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseEdge_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterBusy_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseWidth_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteSend_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameSyncPulseCounter_PIC32.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteComplete_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_FrameErrorStatus_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterByteAcknowledge_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_TransmitterOverflow_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_BaudRateClock_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteAvailable_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_ErrorInterruptControl_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteGet_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioErrorControl_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceivedByteAcknowledge_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioProtocolControl_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_ReceiverOverflow_Default.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioTransmitMode_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveInterruptOnStop_Unsupported.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_AudioProtocolMode_Unsupported.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveInterruptOnStart_Unsupported.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer32bit_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveBufferOverwrite_Unsupported.h:
 
-../../../../../../framework/peripheral/spi/processor/../templates/spi_Buffer16bit_Default.h:
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_DataLineHoldTime_Unsupported.h:
+
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveBusCollisionDetect_Unsupported.h:
+
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveAddressHoldEnable_Unsupported.h:
+
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_SlaveDataHoldEnable_Unsupported.h:
+
+../../../../../../framework/peripheral/i2c/processor/../templates/i2c_AcksequenceIsInProgress_Unsupported.h:
+
+../../../../../../framework/peripheral\osc\plib_osc.h:

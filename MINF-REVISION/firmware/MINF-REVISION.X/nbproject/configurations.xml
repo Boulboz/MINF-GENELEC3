@@ -74,6 +74,7 @@
         <itemPath>../../../I2C/Mc32_DS18b20.h</itemPath>
         <itemPath>../../../I2C/Mc32_I2cUtilCCS.h</itemPath>
         <itemPath>../../../I2C/Mc32_I2cUtil_SM.h</itemPath>
+        <itemPath>../../../I2C/PIC32_I2C_SM.h</itemPath>
       </logicalFolder>
       <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
         <itemPath>../../../SPI/PIC32_SPI_SM.h</itemPath>
@@ -143,6 +144,7 @@
         <itemPath>../../../I2C/Mc32_DS18b20.c</itemPath>
         <itemPath>../../../I2C/Mc32_I2cUtilCCS.c</itemPath>
         <itemPath>../../../I2C/Mc32_I2cUtil_SM.c</itemPath>
+        <itemPath>../../../I2C/PIC32_I2C_SM.c</itemPath>
       </logicalFolder>
       <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
         <itemPath>../../../SPI/PIC32_SPI_SM.c</itemPath>

@@ -6,7 +6,7 @@
  * |  |____     |  |     |  |  |  | |  `----.        |  |____ .----)   |   
  * |_______|    |__|     |__|  |__| |_______|        |_______||_______/                                                      
  * 
- * @file SPI_SM.h
+ * @file PIC32_SPI_SM.h
  * @summary 
  * 
  * Handle SPI by state machine
@@ -22,21 +22,21 @@
  * 
  ******************************************************************************/
 
-#ifndef SPI_SM_H
-#define SPI_SM_H
+#ifndef PIC32_SPI_SM_H
+#define PIC32_SPI_SM_H
 
 #include <stdint.h>
 
 /* SPI STATE MACHINE */
 typedef enum
 {
-	SPI_STATE_UNINITIALIZED=0,
+	SPI_STATE_UNINITIALIZED,
     SPI_STATE_IDLE,
     SPI_STATE_IDLE_READ_DATA_AVAILABLE,
     SPI_STATE_BUSY_WRITE,        
     SPI_STATE_BUSY_READ_WRITE,
     SPI_STATE_BUSY_READ,
-} SPI_STATES;
+} SPI_STATE;
 
 /**
  * SPI_Init
@@ -52,7 +52,7 @@ void SPI_Init(void);
  * State machine handling
  * Should be call cyclically 
  */
-void SPI_DoTasks(void);
+void SPI_Tasks(void);
 
 /**
  * SPI_StartRead
@@ -89,7 +89,7 @@ void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite);
  * SPI_GetState
  * @return Current state of SPI state machine
  */
-SPI_STATES SPI_GetState (void);
+SPI_STATE SPI_GetState (void);
 
 /**
  * SPI_UpdateState
@@ -98,7 +98,7 @@ SPI_STATES SPI_GetState (void);
  * 
  * @param NewState
  */
-void SPI_UpdateState(SPI_STATES NewState);
+void SPI_UpdateState(SPI_STATE NewState);
 
 /**
  * SPI_ReadByte
@@ -109,4 +109,4 @@ void SPI_UpdateState(SPI_STATES NewState);
  */
 uint8_t SPI_ReadByte(void);
 
-#endif /* SPI_SM_H */
+#endif /* PIC32_SPI_SM_H */

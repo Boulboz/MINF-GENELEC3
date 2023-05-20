@@ -6,7 +6,7 @@
  * |  |____     |  |     |  |  |  | |  `----.        |  |____ .----)   |   
  * |_______|    |__|     |__|  |__| |_______|        |_______||_______/                                                      
  * 
- * @file SPI_SM.c
+ * @file PIC32_SPI_SM.c
  * @summary 
  * 
  * Handle SPI by state machine
@@ -44,7 +44,7 @@
 /*****************************************************************************/
 
 /* State machine variable */
-SPI_STATES spiState = SPI_STATE_UNINITIALIZED;
+SPI_STATE spiState = SPI_STATE_UNINITIALIZED;
 
 /*****************************************************************************/
 
@@ -54,7 +54,7 @@ SPI_STATES spiState = SPI_STATE_UNINITIALIZED;
  * One time call when starting programm
  * Refer to #defines to select parameters
  */
-void SPI_Init(void)
+void SPI_Init (void)
 {
 	PLIB_SPI_Disable(SPI_ID);
 	PLIB_SPI_BufferClear(SPI_ID);
@@ -81,7 +81,7 @@ void SPI_Init(void)
  * State machine handling
  * Should be call cyclically 
  */
-void SPI_DoTasks(void)
+void SPI_Tasks (void)
 {
 	switch(spiState)
 	{
@@ -131,7 +131,7 @@ void SPI_DoTasks(void)
  * 
  * @param nBytes : Number of bytes to write
  */
-void SPI_StartRead(uint8_t nBytes)
+void SPI_StartRead (uint8_t nBytes)
 {
     /* Watchdog */
     if(spiState == SPI_STATE_IDLE)
@@ -206,7 +206,7 @@ void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
  * SPI_GetState
  * @return Current state of SPI state machine
  */
-SPI_STATES SPI_GetState(void)
+SPI_STATE SPI_GetState (void)
 {
     return spiState; 
 }
@@ -218,9 +218,9 @@ SPI_STATES SPI_GetState(void)
  * 
  * Update state of SPI SM
  * 
- * @param SPI_STATES NewState
+ * @param SPI_STATE NewState
  */
-void SPI_UpdateState(SPI_STATES NewState)
+void SPI_UpdateState (SPI_STATE NewState)
 {
     spiState = NewState; 
 }
@@ -234,7 +234,7 @@ void SPI_UpdateState(SPI_STATES NewState)
  * 
  * @return Byte in reception buffer
  */
-uint8_t SPI_ReadByte(void)
+uint8_t SPI_ReadByte (void)
 {
     return PLIB_SPI_BufferRead(SPI_ID); 
 }
