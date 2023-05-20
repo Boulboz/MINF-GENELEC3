@@ -56,13 +56,23 @@ void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite);
 //il faut envoyer des données bidons pour faire une lecture
 void SPI_StartRead(uint8_t nBytes);
 
-//pour obtenir l'état interne de la SM spi
+/**
+ * SPI_GetState
+ * @return Current state of SPI state machine
+ */
 SPI_STATES SPI_GetState (void);
 
-void SPI_ResetState(void);
+/**
+ * SPI_UpdateState
+ * @return Current state of SPI state machine
+ */
+void SPI_UpdateState(SPI_STATES NewState);
 
-//lecture d'un byte dans buffer réception
-uint8_t SPI_ReadByte(uint8_t bytePos);
+/**
+ * SPI_ReadByte
+ * @return Byte in reception buffer
+ */
+uint8_t SPI_ReadByte(void);
 
 //fonction à appeler périodiquement pour gestion SPI
 void SPI_DoTasks(void);

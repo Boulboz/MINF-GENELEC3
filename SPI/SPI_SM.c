@@ -13,7 +13,7 @@
  * 
  * @authors
  * 
- * All the SLO2 class contributed to this code
+ * Only peoples mentionned contributed to this code
  * The official version is available at : 
  * https://github.com/Miguel-SLO/MINF-GENELEC3.git
  * 
@@ -41,28 +41,10 @@
  * to shift peripheric internal register */
 #define DUMMY_BYTE  0x81
 
-/* Maximal number of bytes to be stored in buffer */
-#define SPI_BUFFER_SIZE 2
-
 /*****************************************************************************/
 
 /* State machine variable */
 SPI_STATES spiState = SPI_STATE_UNINITIALIZED;
-
-/* Flag if SPI is doing an action */
-bool spiBusy = false;
-
-/* Number of datas to read or write */
-uint8_t nData = 0;
-
-/* Index of datas to shift pointer */
-uint8_t iData = 0;
-
-/* Pointer to the datas to write */
-uint8_t* wData;
-
-/* Buffer to store read data */
-uint8_t rData[SPI_BUFFER_SIZE];
 
 /*****************************************************************************/
 
@@ -82,16 +64,7 @@ void SPI_Init(void)
 	PLIB_SPI_FramedCommunicationDisable(SPI_ID);
 	PLIB_SPI_FIFOEnable(SPI_ID);
 	PLIB_SPI_Enable(SPI_ID);
-
-	/* Configuration control */
-	//ConfigReg = SPI1CON;
-	//BaudReg = SPI1BRG;
-    
-    /* Initialize buffer */
-    for(iData = 0; iData < SPI_BUFFER_SIZE; iData++)
-        rData[iData] = 0;
-    iData = 0;
-   
+  
 	spiState = SPI_STATE_IDLE;
 }
 
@@ -111,53 +84,49 @@ void SPI_DoTasks(void)
             /* Waiting for a start */
 			break;		
 			
-		case SPI_STATE_BUSY_READ :
-            
-            spiBusy = PLIB_SPI_IsBusy(SPI_ID);
-            
-            if(!PLIB_SPI_ReceiverFIFOIsEmpty(SPI_ID))
-            {
-                if(iData < nData)
-                {
-                    rData[iData] = PLIB_SPI_BufferRead(SPI_ID_1);
-                    iData++;
-                }
-                else
-                {
-                    SPI_ResetState();
-                }            
-            }
-            else if(!spiBusy)
-            {
-                PLIB_SPI_BufferWrite(SPI_ID, DUMMY_BYTE);
-            }            
-            
-			break;
-			
 		case SPI_STATE_BUSY_WRITE :
             
-            spiBusy = PLIB_SPI_IsBusy(SPI_ID);
-            
-            if(!spiBusy)
+            if(!PLIB_SPI_IsBusy(SPI_ID))
             {
-                if(iData < nData)
-                {
-                    PLIB_SPI_BufferWrite(SPI_ID, *(wData + iData));
-                    iData++;
-                }
-                else
-                {
-                    SPI_ResetState();
-                }
-            }
+                SPI_CS = 1;
+                spiState = SPI_STATE_IDLE;
+            }            
 			break;
-			
+            
+		case SPI_STATE_BUSY_READ :	
 		case SPI_STATE_BUSY_READ_WRITE :
+            
+            if(!PLIB_SPI_IsBusy(SPI_ID) && !PLIB_SPI_ReceiverFIFOIsEmpty(SPI_ID))
+            {
+                SPI_CS = 1;
+                spiState = SPI_STATE_IDLE_READ_DATA_AVAILABLE;
+            }            
 			break;
 			
 		case SPI_STATE_IDLE_READ_DATA_AVAILABLE :
+            
+            PLIB_SPI_BufferRead(SPI_ID);    
+            if (PLIB_SPI_ReceiverFIFOIsEmpty(SPI_ID))
+                spiState = SPI_STATE_IDLE;
 			break;			
 	} 
+}
+
+/*****************************************************************************/
+
+//Lecture.
+//Comme le SPI est obligatoirement full-duplex,
+//il faut envoyer des données bidons pour faire une lecture
+void SPI_StartRead(uint8_t nBytes)
+{
+	uint8_t iData = 0;
+	
+	SPI_CS = 0;
+	
+	for( iData = 0 ; iData < nBytes ; iData++ )
+        PLIB_SPI_BufferWrite(SPI_ID, DUMMY_BYTE);	
+
+    spiState = SPI_STATE_BUSY_READ;
 }
 
 /*****************************************************************************/
@@ -172,7 +141,7 @@ void SPI_StartWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 	SPI_CS = 0;
 	
 	for( iData = 0 ; iData < nBytes ; iData++ )
-        PLIB_SPI_BufferWrite(SPI_ID_1, *(pBytesToWrite + iData));	
+        PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
 	
     spiState = SPI_STATE_BUSY_WRITE;
 }
@@ -184,20 +153,14 @@ void SPI_StartWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 //des données sont reçues simultanément à l'envoi
 void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 {
-    nData       = nBytes;
-    wData       = pBytesToWrite;
-    spiState    = SPI_STATE_BUSY_READ_WRITE;
-}
-
-/*****************************************************************************/
-
-//Lecture.
-//Comme le SPI est obligatoirement full-duplex,
-//il faut envoyer des données bidons pour faire une lecture
-void SPI_StartRead(uint8_t nBytes)
-{
-    nData       = nBytes;
-    spiState    = SPI_STATE_BUSY_READ; 
+    uint8_t iData = 0;
+	
+	SPI_CS = 0;
+	
+	for( iData = 0 ; iData < nBytes ; iData++ )
+        PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
+	
+    spiState = SPI_STATE_BUSY_READ_WRITE;
 }
 
 /*****************************************************************************/
@@ -208,35 +171,29 @@ void SPI_StartRead(uint8_t nBytes)
  */
 SPI_STATES SPI_GetState(void)
 {
-    return spiState;  
+    return spiState; 
 }
 
 /*****************************************************************************/
 
 /**
- * SPI_GetState
+ * SPI_UpdateState
  * @return Current state of SPI state machine
  */
-void SPI_ResetState(void)
+void SPI_UpdateState(SPI_STATES NewState)
 {
-    iData = 0;
-    spiState = SPI_STATE_IDLE;  
+    spiState = NewState; 
 }
 
 /*****************************************************************************/
 
-/**
- * SPI_ReadByte
- * @return Byte in reception buffer
- */
-uint8_t SPI_ReadByte(uint8_t bytePos)
-{
-    if(bytePos < 0)
-        bytePos = 0;
-    else if(bytePos >= SPI_BUFFER_SIZE)
-        bytePos = SPI_BUFFER_SIZE - 1;
-    
-    return rData[bytePos];
-}
+///**
+// * SPI_ReadByte
+// * @return Byte in reception buffer
+// */
+//uint8_t SPI_ReadByte(void)
+//{
+//
+//}
 
 /*****************************************************************************/
