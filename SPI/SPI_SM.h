@@ -41,20 +41,39 @@ typedef enum
 //fonction à appeler 1x au démarrage pour init.
 void SPI_Init(void);
 
-//Ecriture.
-//Comme le SPI est obligatoirement full-duplex,
-//les données reçues ne seront pas traitées
+//fonction à appeler périodiquement pour gestion SPI
+void SPI_DoTasks(void);
+
+/**
+ * SPI_StartRead
+ * 
+ * Write one or multiple dummy bytes
+ * to receive datas back to be read
+ * 
+ * @param nBytes : Number of bytes to write
+ */
+void SPI_StartRead(uint8_t nBytes);
+
+/**
+ * SPI_StartWrite
+ * 
+ * Write one or multiple bytes by SPI
+ * datas received back are not considered
+ * 
+ * @param nBytes : Number of bytes to write
+ * @param pBytesToWrite : Pointer to datas to write
+ */
 void SPI_StartWrite(uint8_t nBytes, uint8_t* pBytesToWrite);
 
-//Lecture/écriture.
-//Comme le SPI est obligatoirement full-duplex,
-//des données sont reçues simultanément à l'envoi
+/**
+ * SPI_StartReadWrite
+ * 
+ * Simultaneous write and read
+ * 
+ * @param nBytes : Number of bytes to write
+ * @param pBytesToWrite : Pointer to datas to write
+ */
 void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite);
-
-//Lecture.
-//Comme le SPI est obligatoirement full-duplex,
-//il faut envoyer des données bidons pour faire une lecture
-void SPI_StartRead(uint8_t nBytes);
 
 /**
  * SPI_GetState
@@ -64,7 +83,10 @@ SPI_STATES SPI_GetState (void);
 
 /**
  * SPI_UpdateState
- * @return Current state of SPI state machine
+ * 
+ * Update state of SPI SM
+ * 
+ * @param NewState
  */
 void SPI_UpdateState(SPI_STATES NewState);
 
@@ -73,8 +95,5 @@ void SPI_UpdateState(SPI_STATES NewState);
  * @return Byte in reception buffer
  */
 uint8_t SPI_ReadByte(void);
-
-//fonction à appeler périodiquement pour gestion SPI
-void SPI_DoTasks(void);
 
 #endif /* SPI_SM_H */

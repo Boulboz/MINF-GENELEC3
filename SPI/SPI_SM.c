@@ -48,7 +48,12 @@ SPI_STATES spiState = SPI_STATE_UNINITIALIZED;
 
 /*****************************************************************************/
 
-/* One time call function, at the start */
+/**
+ * SPI_Init
+ * 
+ * One time call when starting programm
+ * Refer to #defines to select parameters
+ */
 void SPI_Init(void)
 {
 	PLIB_SPI_Disable(SPI_ID);
@@ -72,6 +77,13 @@ void SPI_Init(void)
 
 //fonction à appeler périodiquement pour gestion SPI
 //gestion de la machine d'état du SPI
+
+/**
+ * SPI_DoTasks
+ * 
+ * State machine handling
+ * Should be call cyclically 
+ */
 void SPI_DoTasks(void)
 {
 	switch(spiState)
@@ -114,53 +126,81 @@ void SPI_DoTasks(void)
 
 /*****************************************************************************/
 
-//Lecture.
-//Comme le SPI est obligatoirement full-duplex,
-//il faut envoyer des données bidons pour faire une lecture
+/**
+ * SPI_StartRead
+ * 
+ * Write one or multiple dummy bytes
+ * to receive datas back to be read
+ * 
+ * @param nBytes : Number of bytes to write
+ */
 void SPI_StartRead(uint8_t nBytes)
 {
-	uint8_t iData = 0;
-	
-	SPI_CS = 0;
-	
-	for( iData = 0 ; iData < nBytes ; iData++ )
-        PLIB_SPI_BufferWrite(SPI_ID, DUMMY_BYTE);	
+    /* Watchdog */
+    if(spiState == SPI_STATE_IDLE)
+    {
+        uint8_t iData = 0;
 
-    spiState = SPI_STATE_BUSY_READ;
+        SPI_CS = 0;
+
+        for( iData = 0 ; iData < nBytes ; iData++ )
+            PLIB_SPI_BufferWrite(SPI_ID, DUMMY_BYTE);	
+
+        spiState = SPI_STATE_BUSY_READ;
+    }   
 }
 
 /*****************************************************************************/
 
-//Ecriture.
-//Comme le SPI est obligatoirement full-duplex,
-//les données reçues ne seront pas traitées
+/**
+ * SPI_StartWrite
+ * 
+ * Write one or multiple bytes by SPI
+ * datas received back are not considered
+ * 
+ * @param nBytes : Number of bytes to write
+ * @param pBytesToWrite : Pointer to datas to write
+ */
 void SPI_StartWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 {
-	uint8_t iData = 0;
-	
-	SPI_CS = 0;
-	
-	for( iData = 0 ; iData < nBytes ; iData++ )
-        PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
-	
-    spiState = SPI_STATE_BUSY_WRITE;
+    /* Watchdog */
+    if(spiState == SPI_STATE_IDLE)
+    {
+        uint8_t iData = 0;
+
+        SPI_CS = 0;
+
+        for( iData = 0 ; iData < nBytes ; iData++ )
+            PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
+
+        spiState = SPI_STATE_BUSY_WRITE;
+    }
 }
 
 /*****************************************************************************/
 
-//Lecture/écriture.
-//Comme le SPI est obligatoirement full-duplex,
-//des données sont reçues simultanément à l'envoi
+/**
+ * SPI_StartReadWrite
+ * 
+ * Simultaneous write and read
+ * 
+ * @param nBytes : Number of bytes to write
+ * @param pBytesToWrite : Pointer to datas to write
+ */
 void SPI_StartReadWrite(uint8_t nBytes, uint8_t* pBytesToWrite)
 {
-    uint8_t iData = 0;
-	
-	SPI_CS = 0;
-	
-	for( iData = 0 ; iData < nBytes ; iData++ )
-        PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
-	
-    spiState = SPI_STATE_BUSY_READ_WRITE;
+    /* Watchdog */
+    if(spiState == SPI_STATE_IDLE)
+    {
+        uint8_t iData = 0;
+
+        SPI_CS = 0;
+        
+        for( iData = 0 ; iData < nBytes ; iData++ )
+            PLIB_SPI_BufferWrite(SPI_ID, *(pBytesToWrite + iData));	
+
+        spiState = SPI_STATE_BUSY_READ_WRITE;
+    }
 }
 
 /*****************************************************************************/
@@ -178,7 +218,10 @@ SPI_STATES SPI_GetState(void)
 
 /**
  * SPI_UpdateState
- * @return Current state of SPI state machine
+ * 
+ * Update state of SPI SM
+ * 
+ * @param SPI_STATES NewState
  */
 void SPI_UpdateState(SPI_STATES NewState)
 {
@@ -187,13 +230,16 @@ void SPI_UpdateState(SPI_STATES NewState)
 
 /*****************************************************************************/
 
-///**
-// * SPI_ReadByte
-// * @return Byte in reception buffer
-// */
-//uint8_t SPI_ReadByte(void)
-//{
-//
-//}
+/**
+ * SPI_ReadByte
+ * 
+ * Get the first byte in the SPI buffer 
+ * 
+ * @return Byte in reception buffer
+ */
+uint8_t SPI_ReadByte(void)
+{
+    
+}
 
 /*****************************************************************************/
