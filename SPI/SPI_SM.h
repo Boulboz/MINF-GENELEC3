@@ -27,9 +27,9 @@
 
 #include <stdint.h>
 
+/* SPI STATE MACHINE */
 typedef enum
 {
-	/* SPI's state machine's states. */
 	SPI_STATE_UNINITIALIZED=0,
     SPI_STATE_IDLE,
     SPI_STATE_IDLE_READ_DATA_AVAILABLE,
@@ -38,10 +38,20 @@ typedef enum
     SPI_STATE_BUSY_READ,
 } SPI_STATES;
 
-//fonction à appeler 1x au démarrage pour init.
+/**
+ * SPI_Init
+ * 
+ * One time call when starting programm
+ * Refer to #defines to select parameters
+ */
 void SPI_Init(void);
 
-//fonction à appeler périodiquement pour gestion SPI
+/**
+ * SPI_DoTasks
+ * 
+ * State machine handling
+ * Should be call cyclically 
+ */
 void SPI_DoTasks(void);
 
 /**
@@ -92,6 +102,9 @@ void SPI_UpdateState(SPI_STATES NewState);
 
 /**
  * SPI_ReadByte
+ * 
+ * Get the first byte in the SPI buffer 
+ * 
  * @return Byte in reception buffer
  */
 uint8_t SPI_ReadByte(void);

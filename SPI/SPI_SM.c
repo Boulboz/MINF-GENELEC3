@@ -75,9 +75,6 @@ void SPI_Init(void)
 
 /*****************************************************************************/
 
-//fonction à appeler périodiquement pour gestion SPI
-//gestion de la machine d'état du SPI
-
 /**
  * SPI_DoTasks
  * 
@@ -117,7 +114,7 @@ void SPI_DoTasks(void)
 			
 		case SPI_STATE_IDLE_READ_DATA_AVAILABLE :
             
-            PLIB_SPI_BufferRead(SPI_ID);    
+            /* Use SPI_ReadByte to get datas in FIFO */
             if (PLIB_SPI_ReceiverFIFOIsEmpty(SPI_ID))
                 spiState = SPI_STATE_IDLE;
 			break;			
@@ -233,13 +230,13 @@ void SPI_UpdateState(SPI_STATES NewState)
 /**
  * SPI_ReadByte
  * 
- * Get the first byte in the SPI buffer 
+ * Get the first byte in the SPI buffer
  * 
  * @return Byte in reception buffer
  */
 uint8_t SPI_ReadByte(void)
 {
-    
+    return PLIB_SPI_BufferRead(SPI_ID); 
 }
 
 /*****************************************************************************/
