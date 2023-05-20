@@ -68,9 +68,15 @@
           <itemPath>../../../../../../framework/system/system.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="I2C" displayName="I2C" projectFiles="true">
+        <itemPath>../../../I2C/Mc32gestI2cLM92.h</itemPath>
+        <itemPath>../../../I2C/Mc32gestI2cLM92_SM.h</itemPath>
+        <itemPath>../../../I2C/Mc32_DS18b20.h</itemPath>
+        <itemPath>../../../I2C/Mc32_I2cUtilCCS.h</itemPath>
+        <itemPath>../../../I2C/Mc32_I2cUtil_SM.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
-        <itemPath>../../../SPI/Mc32SpiUtil.h</itemPath>
-        <itemPath>../../../SPI/SPI_SM.h</itemPath>
+        <itemPath>../../../SPI/PIC32_SPI_SM.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -131,9 +137,15 @@
           </logicalFolder>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="I2C" displayName="I2C" projectFiles="true">
+        <itemPath>../../../I2C/Mc32gestI2cLM92.c</itemPath>
+        <itemPath>../../../I2C/Mc32gestI2cLM92_SM.c</itemPath>
+        <itemPath>../../../I2C/Mc32_DS18b20.c</itemPath>
+        <itemPath>../../../I2C/Mc32_I2cUtilCCS.c</itemPath>
+        <itemPath>../../../I2C/Mc32_I2cUtil_SM.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
-        <itemPath>../../../SPI/Mc32SpiUtil.c</itemPath>
-        <itemPath>../../../SPI/SPI_SM.c</itemPath>
+        <itemPath>../../../SPI/PIC32_SPI_SM.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

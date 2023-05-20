@@ -25,8 +25,8 @@
 
 
 #include "Mc32_I2cUtil_SM.h"
-#include "system_config/default/framework/driver/i2c/drv_i2c_static.h"
-// #include "system_config.h"    // pour bsp
+// #include "system_config/default/framework/driver/i2c/drv_i2c_static.h"
+#include "system_config.h"    // pour bsp
 // #include "system_definitions.h"  // pour action sauvage
 
 

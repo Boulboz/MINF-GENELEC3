@@ -12,7 +12,7 @@
 /*--------------------------------------------------------*/
 
 
-#include "bsp_config.h"
+#include "bsp.h"
 #include "Mc32_DS18b20.h"
 #include "Mc32_I2cUtilCCS.h"
 #include "Mc32Delays.h"

@@ -22,9 +22,9 @@
  * 
  ******************************************************************************/
 
-#include "SPI_SM.h"
+#include "PIC32_SPI_SM.h"
 #include "peripheral/spi/plib_spi.h"
-#include "system/clk/sys_clk.h" // pour SYS_CLK_PeripheralFrequencyGet()
+#include "system/clk/sys_clk.h"
 
 /*****************************************************************************/
 
