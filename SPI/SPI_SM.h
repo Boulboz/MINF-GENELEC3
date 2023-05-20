@@ -1,26 +1,26 @@
 /*******************************************************************************
-*  _______  ___________  ___  ___   __               _______      _______ 
-* |   ____||           ||   \/   | |  |             |   ____|    /       |
-* |  |__   `---|  |----`|  \  /  | |  |      ______ |  |__      |   (----`
-* |   __|      |  |     |  |\/|  | |  |     |______||   __|      \   \    
-* |  |____     |  |     |  |  |  | |  `----.        |  |____ .----)   |   
-* |_______|    |__|     |__|  |__| |_______|        |_______||_______/                                                      
-* 
-* @file SPI_SM.h
-* @summary 
-* 
-* Handle SPI by state machine
-* 
-* @authors
-* 
-* All the SLO2 class contributed to this code
-* The official version is available at : 
-* https://github.com/Miguel-SLO/MINF-GENELEC3.git
-* 
-* @creation 20.05.2023
-* @lastmodif 20.05.2023
-* 
-*******************************************************************************/
+ *  _______  ___________  ___  ___   __               _______      _______ 
+ * |   ____||           ||   \/   | |  |             |   ____|    /       |
+ * |  |__   `---|  |----`|  \  /  | |  |      ______ |  |__      |   (----`
+ * |   __|      |  |     |  |\/|  | |  |     |______||   __|      \   \    
+ * |  |____     |  |     |  |  |  | |  `----.        |  |____ .----)   |   
+ * |_______|    |__|     |__|  |__| |_______|        |_______||_______/                                                      
+ * 
+ * @file SPI_SM.h
+ * @summary 
+ * 
+ * Handle SPI by state machine
+ * 
+ * @authors
+ * 
+ * Only peoples mentionned contributed to this code
+ * The official version is available at : 
+ * https://github.com/Miguel-SLO/MINF-GENELEC3.git
+ * 
+ * @creation 20.05.2023
+ * @lastmodif 20.05.2023
+ * 
+ ******************************************************************************/
 
 #ifndef SPI_SM_H
 #define SPI_SM_H
